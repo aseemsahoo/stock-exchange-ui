@@ -1,0 +1,24 @@
+nav{
+    overflow: hidden;
+    text-align: center;
+    position: top;
+    width: 100%;
+}
+input{
+    padding: 8px;
+    border-radius: 5px;
+    border-color: white;
+}
+button{
+    width: 75px;
+    padding: 8px;
+    border-width: 0;
+    border-radius: 5px;
+    margin-left: 10px;
+    color : white;
+    background-color: mediumblue;
+}
+li{
+    font-size: larger;
+    color: white;
+}

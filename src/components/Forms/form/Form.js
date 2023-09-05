@@ -12,8 +12,8 @@ export default class Form extends Component {
     return (
       <>
       <Navigation></Navigation>
-      <div class="container w-75 mx-auto">
-        <div class="container w-50 mt-4 mb-4 mx-auto">
+      <div class="container-fluid w-75 justify-content-center">
+        <div class="container w-100 mt-4 mb-4 text-center">
           <FormButton text="Login" />
           <FormButton text="Signup" />
         </div>

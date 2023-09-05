@@ -1,6 +1,6 @@
 button{
-    width: 50%;
     border-radius: 0;
     border-color:white;
+    display: flex;
     background-color: yellowgreen;
 }

@@ -20,7 +20,7 @@ let isSelected = false;
     }
     return (
         <button onClick={onClick}
-        className="btn btn-warning btn-lg btn-block" > {text}</button>
+        className="btn btn-warning p-3 w-25 m-1 btn-lg btn-block" > {text}</button>
     )
 }
 

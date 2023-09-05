@@ -9,8 +9,16 @@ const SignupForm = () => {
   const [lastname, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log(`${username} ${password}`);
+    alert("To be implemented;....")
+    // navigate("/home");
+  };
+
   return (
-    <form class="container-fluid justify-content-center bg-light p-4">
+    <form class="container-fluid justify-content-center bg-light p-4"  onSubmit={onSubmit}>
       <div class="row">
         <div class="col">
           <div class="form-group p-2 py-4">

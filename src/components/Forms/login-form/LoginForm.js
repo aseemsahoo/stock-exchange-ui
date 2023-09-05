@@ -6,13 +6,41 @@ import { Button, TextField } from "@mui/material";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+
+  const initialValues = { username: "", password: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+
+  // this state is used for form errors
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+    if (!formValues.username.trim()) {
+      errors.username = "Please enter a username.";
+    }
+    if (!formValues.password.trim()) {
+      errors.password = "Please enter a password.";
+    }
+    setFormErrors(errors);
+
+    // returns true if no errors
+    return Object.keys(errors).length === 0;
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log(username + password);
-    navigate("/home");
+
+    console.log(formValues);
+
+    if (validateForm()) {
+      alert("No user authentication yet....");
+      navigate("/home");
+    }
   };
 
   return (
@@ -22,20 +50,30 @@ const LoginForm = () => {
           id="outlined-basic"
           label="Username"
           variant="outlined"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          defaultValue={formValues.username}
+          onChange={onChange}
         />
-        {/* <!-- <small *ngIf="submitted && loginForm.controls['username'].errors" className="text text-danger"> Please enter the username</small> --> */}
+      </div>
+      <div className="text-center">
+        {formErrors.username && (
+          <small className="text text-danger">{formErrors.username}</small>
+        )}
       </div>
       <div className="form-group p-3 text-center">
         <TextField
           id="outlined-basic"
           label="Password"
           variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          name="password"
+          defaultValue={formValues.password}
+          onChange={onChange}
         />
-        {/* <!-- <small *ngIf="loginForm.controls['password'].invalid" className="text text-danger"> Please enter the password</small> --> */}
+      </div>
+      <div className="text-center">
+        {formErrors.username && (
+          <small className="text text-danger">{formErrors.username}</small>
+        )}
       </div>
       <div className="text-center mt-4 pb-4">
         <Button

@@ -2,8 +2,22 @@ import React from "react";
 import NavigationHome from "../Navigation/NavigationHome";
 import Stock from "../Stocks/stock/Stock";
 import Divider from "@mui/material/Divider";
+import { useState, useEffect } from "react";
 
 const Home = () => {
+  const [stocks, setStocks] = useState([]);
+
+  // similar to ngOnInit
+  useEffect(() => {
+    const getStocks = async () => {
+      const res = await fetch('http://localhost:5000/stocks');
+      const data = await res.json();
+      
+      setStocks(data);
+      }
+    getStocks();
+  });
+
   return (
     <>
       <NavigationHome></NavigationHome>

@@ -1,0 +1,82 @@
+{
+  "stocks": [
+    {
+      "id": 1,
+      "name": "Stock1",
+      "sector": "Consumer Cyclical",
+      "symbol": "s1"
+    },
+    {
+      "id": 2,
+      "name": "Stock2",
+      "sector": "Consumer Cyclical",
+      "symbol": "s2"
+    },
+    {
+      "id": 3,
+      "name": "Stock3",
+      "sector": "Consumer Cyclical",
+      "symbol": "s3"
+    },
+    {
+      "id": 4,
+      "name": "Stock4",
+      "sector": "Consumer Cyclical",
+      "symbol": "s4"
+    },
+    {
+      "id": 5,
+      "name": "Stock5",
+      "sector": "Consumer Cyclical",
+      "symbol": "s5"
+    },
+    {
+      "id": 6,
+      "name": "Stock6",
+      "sector": "Consumer Cyclical",
+      "symbol": "s6"
+    },
+    {
+      "id": 7,
+      "name": "Stock7",
+      "sector": "Consumer Cyclical",
+      "symbol": "s7"
+    },
+    {
+      "id": 8,
+      "name": "Stock8",
+      "sector": "Consumer Cyclical",
+      "symbol": "s8"
+    },
+    {
+      "id": 9,
+      "name": "Stock9",
+      "sector": "Consumer Cyclical",
+      "symbol": "s9"
+    },
+    {
+      "id": 10,
+      "name": "Stock10",
+      "sector": "Consumer Cyclical",
+      "symbol": "s10"
+    },
+    {
+      "id": 11,
+      "name": "Stock11",
+      "sector": "Consumer Cyclical",
+      "symbol": "s11"
+    },
+    {
+      "id": 12,
+      "name": "Stock12",
+      "sector": "Consumer Cyclical",
+      "symbol": "s12"
+    },
+    {
+      "id": 13,
+      "name": "Stock13",
+      "sector": "Consumer Cyclical",
+      "symbol": "s13"
+    }
+  ]
+}

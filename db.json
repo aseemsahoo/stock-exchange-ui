@@ -2,33 +2,33 @@
   "stocks": [
     {
       "id": 1,
-      "name": "Stock1",
+      "name": "Adobe",
       "sector": "Consumer Cyclical",
-      "symbol": "s1"
+      "symbol": "ADBE"
     },
     {
       "id": 2,
-      "name": "Stock2",
-      "sector": "Consumer Cyclical",
-      "symbol": "s2"
+      "name": "Amazon",
+      "sector": "Technology",
+      "symbol": "AMZN"
     },
     {
       "id": 3,
-      "name": "Stock3",
-      "sector": "Consumer Cyclical",
-      "symbol": "s3"
+      "name": "Apple",
+      "sector": "Healthcare",
+      "symbol": "AAPL"
     },
     {
       "id": 4,
-      "name": "Stock4",
-      "sector": "Consumer Cyclical",
-      "symbol": "s4"
+      "name": "Google",
+      "sector": "Communication Services",
+      "symbol": "GOOGL"
     },
     {
       "id": 5,
-      "name": "Stock5",
-      "sector": "Consumer Cyclical",
-      "symbol": "s5"
+      "name": "Infosys",
+      "sector": "Communication Services",
+      "symbol": "INFY"
     },
     {
       "id": 6,
@@ -39,7 +39,7 @@
     {
       "id": 7,
       "name": "Stock7",
-      "sector": "Consumer Cyclical",
+      "sector": "Technology",
       "symbol": "s7"
     },
     {
@@ -51,31 +51,31 @@
     {
       "id": 9,
       "name": "Stock9",
-      "sector": "Consumer Cyclical",
+      "sector": "Technology",
       "symbol": "s9"
     },
     {
       "id": 10,
       "name": "Stock10",
-      "sector": "Consumer Cyclical",
+      "sector": "Healthcare",
       "symbol": "s10"
     },
     {
       "id": 11,
       "name": "Stock11",
-      "sector": "Consumer Cyclical",
+      "sector": "Communication Services",
       "symbol": "s11"
     },
     {
       "id": 12,
       "name": "Stock12",
-      "sector": "Consumer Cyclical",
+      "sector": "Technology",
       "symbol": "s12"
     },
     {
       "id": 13,
       "name": "Stock13",
-      "sector": "Consumer Cyclical",
+      "sector": "Healthcare",
       "symbol": "s13"
     }
   ]

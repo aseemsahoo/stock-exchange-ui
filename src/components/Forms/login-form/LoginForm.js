@@ -39,7 +39,7 @@ const LoginForm = () => {
 
     if (validateForm()) {
       alert("No user authentication yet....");
-      navigate("/home");
+      navigate("/home/stocks");
     }
   };
 

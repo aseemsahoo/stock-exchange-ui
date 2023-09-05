@@ -1,57 +1,30 @@
 import React from "react";
 import NavigationHome from "../Navigation/NavigationHome";
 import Stock from "../Stocks/stock/Stock";
+import { Routes, Route, useNavigate } from "react-router-dom";
+
 import Divider from "@mui/material/Divider";
 import { useState, useEffect } from "react";
+import StockChart from "../Stocks/stock-chart/StockChart";
+import StocksList from "../Stocks/stocks-list/StocksList";
 
 const Home = () => {
-  const [stocks, setStocks] = useState([]);
-
-  // similar to ngOnInit
-  useEffect(() => {
-    const getStocks = async () => {
-      const res = await fetch('http://localhost:5000/stocks');
-      const data = await res.json();
-      
-      setStocks(data);
-      }
-    getStocks();
-  });
-
   return (
     <>
       <NavigationHome></NavigationHome>
       <div className="m-4 border">
-        <h1> Information</h1>
+        <Routes>
+          <Route path="/list/:id" element={<StocksList />} />
+          <Route path="/stocks" element={<StockChart />} />
+        </Routes>
+        {/* <h1> Information</h1>
         <div className="d-flex flex-wrap justify-content-start">
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-          <div className="col-md-3 p-3">
-            <Stock></Stock>
-          </div>
-        </div>
+          {stocks.map((stock) => (
+            <div key={stock.id} className="col-md-3 p-3">
+              <Stock stock={stock} />
+            </div>
+          ))}
+        </div> */}
       </div>
     </>
   );

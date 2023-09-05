@@ -1,28 +1,40 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { Link } from 'react-router-dom';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Typography from '@mui/material/Typography';
+import { redirect } from 'react-router-dom';
 
+const Stock = ({stock}) => {
 
-const Stock = () => {
+  const navigate = useNavigate();
+
+  const onClick = (event) => {
+    event.preventDefault();
+    console.log(stock);
+    navigate(`/home/list/${stock.id}`)
+    // <Link to={`/home/stocks/${stock.id}`}>View Stock</Link>
+  }
+
   return (
     <Card  sx={{ border: '3px solid orange', borderRadius : '20px', m: 1, p: 4,  display: 'block'}}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          SYM
+          SYM: {stock.symbol}
         </Typography>
         <Typography variant="h4" component="div">
-          Item1
+          {stock.name}
         </Typography>
         <Typography color="text.secondary">
-          Sector
+          Sector: {stock.sector}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="outlined" color="success" size="large"> Charts </Button>
+        <Button variant="outlined" color="success" size="large" onClick={onClick}> Charts </Button>
       </CardActions>
     </Card>
   )

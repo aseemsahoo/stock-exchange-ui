@@ -21,9 +21,11 @@ const StocksList = () => {
   // similar to ngOnInit
   useEffect(() => {
     const getStock = async () => {
-      try {
+      try 
+      {
         const res1 = await fetch(`http://localhost:5000/stocks/${id}`);
-        if (!res1.ok) {
+        if (!res1.ok) 
+        {
           throw new Error("Network response was not ok");
         }
         const data1 = await res1.json();
@@ -33,14 +35,18 @@ const StocksList = () => {
         const url = `https://financialmodelingprep.com/api/v3/historical-chart/15min/${data1.symbol}?apikey=${apiKey}`;
         console.log(url);
         const res2 = await fetch(url);
-        if (!res2.ok) {
+
+        if (!res2.ok)
+        {
           throw new Error("Network response was not ok");
         }
         const data2 = await res2.json();
 
         setStockData(data2);
         setLoading(false);
-      } catch (error) {
+      } 
+      catch (error) 
+      {
         console.error("Error fetching data:", error.message);
         setLoading(false);
       }

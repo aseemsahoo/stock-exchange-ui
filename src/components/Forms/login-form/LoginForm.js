@@ -65,6 +65,7 @@ const LoginForm = () => {
           id="outlined-basic"
           label="Password"
           variant="outlined"
+          type="password"
           name="password"
           defaultValue={formValues.password}
           onChange={onChange}

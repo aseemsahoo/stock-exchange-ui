@@ -60,6 +60,7 @@ const SignupForm = () => {
             <TextField
               id="outlined-basic"
               label="Password"
+              type="password"
               variant="outlined"
               value={password}
               onChange={(e) => setPassword(e.target.value)}

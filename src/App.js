@@ -8,6 +8,7 @@ import SignupForm from "./components/Forms/signup-form/SignupForm";
 import StockChart from "./components/Home/Stocks/stock-chart/StockChart";
 import Stock from "./components/Home/Stocks/stock/Stock";
 import StocksList from "./components/Home/Stocks/stocks-list/StocksList";
+import Profile from "./components/Profile/profile/Profile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/home/list/:id" element={<StocksList />} />
         <Route path="/home/stocks" element={<StockChart />} />
       </Route>
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   );
 }

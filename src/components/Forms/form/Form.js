@@ -12,12 +12,12 @@ export default class Form extends Component {
     return (
       <>
       <Navigation></Navigation>
-      <div class="container-fluid w-75 justify-content-center">
-        <div class="container w-100 mt-4 mb-4 text-center">
+      <div className="container-fluid w-75 justify-content-center">
+        <div className="container w-100 mt-4 mb-4 text-center">
           <FormButton text="Login" />
           <FormButton text="Signup" />
         </div>
-        <div class="w-50 mb-5 mx-auto">
+        <div className="w-50 mb-5 mx-auto">
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/signup" element={<SignupForm />} />

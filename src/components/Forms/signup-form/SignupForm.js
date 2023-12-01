@@ -18,10 +18,10 @@ const SignupForm = () => {
   };
 
   return (
-    <form class="container-fluid justify-content-center bg-light p-4"  onSubmit={onSubmit}>
-      <div class="row">
-        <div class="col">
-          <div class="form-group p-2 py-4">
+    <form className="container-fluid justify-content-center bg-light p-4"  onSubmit={onSubmit}>
+      <div className="row">
+        <div className="col">
+          <div className="form-group p-2 py-4">
             <TextField
               id="outlined-basic"
               label="First Name"
@@ -31,8 +31,8 @@ const SignupForm = () => {
             />
           </div>
         </div>
-        <div class="col">
-          <div class="form-group p-2 py-4">
+        <div className="col">
+          <div className="form-group p-2 py-4">
             <TextField
               id="outlined-basic"
               label="Last Name"
@@ -40,12 +40,12 @@ const SignupForm = () => {
               value={lastname}
               onChange={(e) => setLastName(e.target.value)}
             />
-          </div>
+               </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group p-2">
+      <div className="row">
+        <div className="col">
+          <div className="form-group p-2">
             <TextField
               id="outlined-basic"
               label="Username"
@@ -54,9 +54,8 @@ const SignupForm = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-        </div>
-        <div class="col">
-          <div class="form-group p-2">
+        </div><div className="col">
+          <div className="form-group p-2">
             <TextField
               id="outlined-basic"
               label="Password"
@@ -68,7 +67,7 @@ const SignupForm = () => {
           </div>
         </div>
       </div>
-      <div class="text-center mt-4 pb-4">
+      <div className="text-center mt-4 pb-4">
         <Button
           variant="contained"
           className="btn btn-primary w-50"

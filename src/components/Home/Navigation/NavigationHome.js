@@ -11,16 +11,16 @@ function NavigationHome() {
         <input type="text" placeholder="Enter a keyword" />
         <button className='mx-3'> Search </button>
       </div>
-      <ul class="nav justify-content-end">
-        <li class="nav-item mx-4">
+      <ul className="nav justify-content-end">
+        <li className="nav-item mx-4">
             <a> Home </a>
         </li>
         <Divider sx={{  bgcolor: "white" }}  orientation="vertical" flexItem />
-        <li class="nav-item mx-4">
+        <li className="nav-item mx-4">
             <a> My Profile </a>
         </li>
         <Divider sx={{ bgcolor: "white" }}  orientation="vertical" flexItem />
-        <li class="nav-item mx-4">
+        <li className="nav-item mx-4">
             <a> Log Out </a>
         </li>
       </ul>

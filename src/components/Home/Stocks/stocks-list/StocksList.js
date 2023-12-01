@@ -5,45 +5,49 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
+import axios from 'axios';
 
 const StocksList = () => {
   // get stock from redirect URL
   const { id } = useParams();
 
-  const apiKey = "fad737313869deb61665c826a21b20a9";
+  // get ApiKey from environment
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   const [stock, setStock] = useState({});
   const [stockData, setStockData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [buyAmount, setBuyAmount] = useState(0);
+  const [sellAmount, setSellAmount] = useState(0);
 
   const navigate = useNavigate();
 
   // similar to ngOnInit
   useEffect(() => {
+
     const getStock = async () => {
       try 
       {
-        const res1 = await fetch(`http://localhost:5000/stocks/${id}`);
-        if (!res1.ok) 
-        {
-          throw new Error("Network response was not ok");
-        }
-        const data1 = await res1.json();
-        setStock(data1);
+        axios.get(`http://localhost:8080/main/dashboard/stock/${id}`)
+        .then(async (response) => {
+          const stockData = response.data;
+          setStock(stockData);
 
-        // get price trend only after the first API has been called
-        const url = `https://financialmodelingprep.com/api/v3/historical-chart/15min/${data1.symbol}?apikey=${apiKey}`;
-        console.log(url);
-        const res2 = await fetch(url);
+          const url = `https://financialmodelingprep.com/api/v3/historical-chart/15min/${stockData.symbol}?apikey=${apiKey}`;
+          const priceTrendResult = await fetch(url);
 
-        if (!res2.ok)
-        {
-          throw new Error("Network response was not ok");
-        }
-        const data2 = await res2.json();
+          // if (!priceTrendResult.ok){
+          //   throw new Error("Network response was not ok");
+          // } 
+          const priceTrendData = await priceTrendResult.json();
 
-        setStockData(data2);
-        setLoading(false);
+          setStockData(priceTrendData);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.error('Error making the list API call:', error);
+          setLoading(false);
+        })
       } 
       catch (error) 
       {
@@ -87,16 +91,65 @@ const StocksList = () => {
     navigate('/home/stocks');
   }
 
+  const onBuyClick = (event) => {
+    event.preventDefault();
+    console.log(buyAmount);
+
+    axios.post('http://localhost:8080/main/stocks/buy', 
+    {
+      buy_quantity : buyAmount,  
+      stockId : stock.id.toString(), // FIX THIS
+      symbol : stock.symbol   
+    }).then((response) => {
+      alert('BOUGHT !!')
+      navigate('/profile');
+    })
+    .catch((error) => {
+      alert("ERR")
+      console.error('Error inside login API call:', error);
+    })
+    
+  }
+  
+  const onSellClick = (event) => {
+    event.preventDefault();
+    console.log(sellAmount);
+
+    axios.post('http://localhost:8080/main/stocks/sell', 
+    {
+      sell_quantity : sellAmount,  
+      stockId : stock.id.toString(), // FIX THIS
+      symbol : stock.symbol   
+    }).then((response) => {
+      alert('SOLD !!')
+      navigate('/profile');
+    })
+    .catch((error) => {
+      alert("ERR")
+      console.error('Error inside login API call:', error);
+    })
+  }
+
+  const handleBuyAmountChange = (event) => {
+    event.preventDefault();
+    setBuyAmount(event.target.value);
+  };
+
+  const handleSellAmountChange = (event) => {
+    event.preventDefault();
+    setSellAmount(event.target.value);
+  };
+
   return (
     <div className="container-fluid">
       <div className="d-flex my-2 justify-content-between">
-        <h1> Stock Information: </h1>
+        <h1 className="display-4"> Stock Information: </h1>
         <div className="p-2 ">
           <button onClick={onRedirectClick}> Go back </button>
         </div>
       </div>
-      <table class="table">
-        <thead>
+      <table className="fs-5 table">
+        <thead className="table-light">
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Name</th>
@@ -114,10 +167,34 @@ const StocksList = () => {
         </tbody>
       </table>
       <div className="my-4">
-        <h2> Price Trend: </h2>
+        <h2 className="display-6"> Price Trend: </h2>
       </div>
       <div className="chart-container">
         <Line data={data} options={options} />
+      </div>
+      <div style={{ justifyContent: 'center', padding: '50px', display: 'flex', gap: '150px' }}>
+        <div className="buy-form">
+          <div className="row">
+            <div className="col mb-3">
+              <label className="fs-5 form-label">Enter the quantity to buy</label>
+              <input value={buyAmount} onChange={handleBuyAmountChange} type="number" className="fs-5 form-control" id="buyAmount" />
+            </div>
+            <div className="col-12">
+              <button onClick={onBuyClick} className="btn btn-primary">Buy</button>
+            </div>
+          </div>
+        </div>
+        <div className="sell-form">
+          <div className="row">
+            <div className="col mb-3">
+              <label className="fs-5 form-label">Enter the quantity to sell</label>
+              <input value={sellAmount} onChange={handleSellAmountChange} type="number" className="fs-5 form-control" id="sellAmount" />
+            </div>
+            <div className="col-12">
+              <button onClick={onSellClick} className="btn btn-primary">Sell</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

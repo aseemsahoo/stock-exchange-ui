@@ -7,7 +7,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import { BrowserRouter } from 'react-router-dom';
 import Popper from 'popper.js';
+import axios from 'axios';
 
+axios.interceptors.request.use(
+  (config) => {
+        config.headers['Authorization'] = `Basic YXNlZW06c2Fob28=`;
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>

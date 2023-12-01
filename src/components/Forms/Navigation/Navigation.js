@@ -3,7 +3,7 @@ import './Navigation.css';
 function Navigation() {
     return (
         <nav className="navbar top navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand p-2 m-2" > Simulator</a>
+            <a className="navbar-brand p-2 m-2" > Share Market Simulator</a>
         </nav>
     );
 }

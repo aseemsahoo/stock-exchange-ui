@@ -1,27 +1,65 @@
 import "./NavigationHome.css";
 import Divider from '@mui/material/Divider';
-
+import { useState } from "react";
+import axios from 'axios';
+import { Navigate, useNavigate} from "react-router-dom";
 
 function NavigationHome() {
+  const [keyword, setKeyword] = useState('');
+  const navigate = useNavigate();
+
+  const search = async () => {
+    axios.get(`http://localhost:8080/main/frontend/list?keyword=${keyword}`)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+
+        // TO-DO
+        // setStocks(data);
+      })
+      .catch((error) => {
+        console.log('Error making the navigation list API call:', error);
+      })
+  }
+
+  const handleInputChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const navHomeRedirect = (event) => {
+    event.preventDefault();
+    navigate('/home/stocks');
+  }
+
+  const navProfileRedirect = (event) => {
+    event.preventDefault();
+    navigate('/profile');
+  }
+
+  const navLogoutRedirect = (event) => {
+    event.preventDefault();
+    navigate('/login');
+  }
+
   return (
     <nav className="navbar top navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand p-2 m-2">Share Market Simulator </a>
         <Divider sx={{  bgcolor: "white" }}  orientation="vertical" flexItem />
       <div className="col d-flex mx-4">
-        <input type="text" placeholder="Enter a keyword" />
-        <button className='mx-3'> Search </button>
+        <input value={keyword} onChange={handleInputChange} type="text" placeholder="Enter a keyword" />
+        <button onClick={search} className='mx-3'> Search </button>
       </div>
       <ul className="nav justify-content-end">
         <li className="nav-item mx-4">
-            <a> Home </a>
+            <a onClick={navHomeRedirect} style={{ cursor: 'pointer' }}> Home </a>
         </li>
         <Divider sx={{  bgcolor: "white" }}  orientation="vertical" flexItem />
         <li className="nav-item mx-4">
-            <a> My Profile </a>
+            <a onClick={navProfileRedirect} style={{ cursor: 'pointer' }}> My Profile </a>
         </li>
         <Divider sx={{ bgcolor: "white" }}  orientation="vertical" flexItem />
         <li className="nav-item mx-4">
-            <a> Log Out </a>
+            <a onClick={navLogoutRedirect} style={{ cursor: 'pointer' }}> Log Out </a>
         </li>
       </ul>
     </nav>

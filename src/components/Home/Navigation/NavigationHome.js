@@ -3,13 +3,14 @@ import Divider from '@mui/material/Divider';
 import { useState } from "react";
 import axios from 'axios';
 import { Navigate, useNavigate} from "react-router-dom";
+import AuthService from "../../../services/AuthService";
 
 function NavigationHome() {
   const [keyword, setKeyword] = useState('');
   const navigate = useNavigate();
 
   const search = async () => {
-    axios.get(`http://localhost:8080/main/frontend/list?keyword=${keyword}`)
+    axios.get(`http://localhost:8080/dashboard/list?keyword=${keyword}`)
       .then((response) => {
         const data = response.data;
         console.log(data);
@@ -38,7 +39,8 @@ function NavigationHome() {
 
   const navLogoutRedirect = (event) => {
     event.preventDefault();
-    navigate('/login');
+    AuthService.removeToken();
+    navigate('/');
   }
 
   return (

@@ -17,7 +17,6 @@ const Stock = ({stock}) => {
     event.preventDefault();
     console.log(stock);
     navigate(`/home/list/${stock.id}`)
-    // <Link to={`/home/stocks/${stock.id}`}>View Stock</Link>
   }
 
   return (

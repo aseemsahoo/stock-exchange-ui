@@ -26,34 +26,23 @@ const StocksList = () => {
   useEffect(() => {
 
     const getStock = async () => {
-      try 
-      {
-        axios.get(`http://localhost:8080/main/dashboard/stock/${id}`)
-        .then(async (response) => {
-          const stockData = response.data;
-          setStock(stockData);
+      axios.get(`http://localhost:8080/dashboard/stock/${id}`)
+      .then(async (response) => {
+        const stockData = response.data;
+        setStock(stockData);
 
-          const url = `https://financialmodelingprep.com/api/v3/historical-chart/15min/${stockData.symbol}?apikey=${apiKey}`;
-          const priceTrendResult = await fetch(url);
+        const url = `https://financialmodelingprep.com/api/v3/historical-chart/15min/${stockData.symbol}?apikey=${apiKey}`;
+        const priceTrendResult = await fetch(url);
 
-          // if (!priceTrendResult.ok){
-          //   throw new Error("Network response was not ok");
-          // } 
-          const priceTrendData = await priceTrendResult.json();
+        const priceTrendData = await priceTrendResult.json();
 
-          setStockData(priceTrendData);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error('Error making the list API call:', error);
-          setLoading(false);
-        })
-      } 
-      catch (error) 
-      {
-        console.error("Error fetching data:", error.message);
+        setStockData(priceTrendData);
         setLoading(false);
-      }
+      })
+      .catch((error) => {
+        console.error('Error making the list API call:', error);
+        setLoading(false);
+      })
     };
     getStock();
   }, []);
@@ -95,10 +84,10 @@ const StocksList = () => {
     event.preventDefault();
     console.log(buyAmount);
 
-    axios.post('http://localhost:8080/main/stocks/buy', 
+    axios.post('http://localhost:8080/stocks/buy', 
     {
       buy_quantity : buyAmount,  
-      stockId : stock.id.toString(), // FIX THIS
+      stockId : stock.id.toString(),
       symbol : stock.symbol   
     }).then((response) => {
       alert('BOUGHT !!')
@@ -108,17 +97,16 @@ const StocksList = () => {
       alert("ERR")
       console.error('Error inside login API call:', error);
     })
-    
   }
   
   const onSellClick = (event) => {
     event.preventDefault();
     console.log(sellAmount);
 
-    axios.post('http://localhost:8080/main/stocks/sell', 
+    axios.post('http://localhost:8080/stocks/sell', 
     {
       sell_quantity : sellAmount,  
-      stockId : stock.id.toString(), // FIX THIS
+      stockId : stock.id.toString(),
       symbol : stock.symbol   
     }).then((response) => {
       alert('SOLD !!')

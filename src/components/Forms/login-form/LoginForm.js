@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Button, TextField } from "@mui/material";
+import axios from 'axios';
+import AuthService from "../../../services/AuthService";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -10,8 +12,7 @@ const LoginForm = () => {
   const initialValues = { username: "", password: "" };
   const [formValues, setFormValues] = useState(initialValues);
 
-  // this state is used for form errors
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState({}); // this state is used for form errors
 
   const validateForm = () => {
     let errors = {};
@@ -23,8 +24,7 @@ const LoginForm = () => {
     }
     setFormErrors(errors);
 
-    // returns true if no errors
-    return Object.keys(errors).length === 0;
+    return Object.keys(errors).length === 0;  // returns true if no errors
   };
 
   const onChange = (e) => {
@@ -32,16 +32,27 @@ const LoginForm = () => {
     setFormValues({ ...formValues, [name]: value });
   };
 
-  const onSubmit = (event) => {
+  const doJwtLogin = (token) => { // set the token in localStorage
+    AuthService.setToken(token);
+  }
+
+  const onSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(formValues);
-
     if (validateForm()) {
-      alert("No user authentication yet....");
-      navigate("/home/stocks");
-    }
-  };
+      axios.post('http://localhost:8080/auth/loginSubmit', {
+          username: formValues.username,
+          password: formValues.password,
+      }).then((response) => {
+          const token = response.data["jwt-token"];
+          doJwtLogin(token);
+          navigate("/home/stocks");
+      })
+      .catch((error) => {
+        console.error('Error inside login API call:', error);
+      });
+    };
+  }
 
   return (
     <form className="container bg-light p-4" onSubmit={onSubmit}>
